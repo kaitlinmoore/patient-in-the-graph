@@ -8,6 +8,9 @@ every statement that survives points back to a graph edge or a PubMed ID.
 
 Built in 48 hours (Nov 6–8, 2026). The repository is now kept as a post-hackathon reference.
 
+**Live demo:** <https://patient-in-the-graph-demo.streamlit.app/> (the kidney cancer case study, replaying saved runs).
+This repository is a fork of [amyq-boop/patient-in-the-graph](https://github.com/amyq-boop/patient-in-the-graph).
+
 ## How it works
 
 | Step | What happens |
