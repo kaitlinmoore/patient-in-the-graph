@@ -294,8 +294,12 @@ def pend(what):
 
 
 # ------------------------------------------------------------------ hero
-st.markdown("""<div class="nav"><b>Patient-in-the-Graph</b>
-<span><a href="#case">The case</a><a href="#method">How it works</a><a href="#results">Results</a></span></div>""",
+# Streamlit's header (and with it the sidebar toggle) is hidden above, so link the other pages here.
+PAGE_LINKS = [("Alexander_Young", "Alexander Young case"), ("Alexander_Young_Live", "Alexander Young (live)"),
+              ("Clinical_Case_Review", "Clinical case review")]
+case_link = "" if VIEW == "demo" else '<a href="Alexander_Young" target="_self">Alexander Young case</a>'
+st.markdown(f"""<div class="nav"><b>Patient-in-the-Graph</b>
+<span><a href="#case">The case</a><a href="#method">How it works</a><a href="#results">Results</a>{case_link}</span></div>""",
             unsafe_allow_html=True)
 if VIEW != "demo":
     TISSUE = (Path(__file__).parent / "assets" / "tissue.svg").read_text()
@@ -464,7 +468,9 @@ returned. Anything else is removed or labeled a hypothesis.</p></div></div>""", 
             pend("pathway reconstruction cohort (E4)")
         st.markdown("</div>", unsafe_allow_html=True)
 
+page_links = " · ".join(f'<a href="{slug}" target="_self">{esc(label)}</a>' for slug, label in PAGE_LINKS)
 credits = "<br>".join(f"{esc(role)}{': ' + esc(n) if n else ''}" for role, n in TEAM.items())
 st.markdown(f"""<div class="foot"><div>{credits}</div><div style="max-width:42ch">A research tool for generating hypotheses
 about tumors. Not for diagnosis or treatment decisions. Built at Nucleate Pittsburgh BioHack 2026 on PrimeKG, DisMech, CPTAC
-and NVIDIA.</div></div>""", unsafe_allow_html=True)
+and NVIDIA.<br>More pages: {page_links}
+</div></div>""", unsafe_allow_html=True)
